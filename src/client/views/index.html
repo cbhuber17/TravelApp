@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Colin Huber">
+    <title>Travel App</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <section>
+        <form>
+            <p>Enter a city to travel to and a departure/return date:</p>
+            <div>
+                <input id="input-city" type="text" placeholder="Enter city here..." onfocus="this.value=''">
+                <input id="input-departure-date" type="date" placeholder="Enter departure date here..."
+                    onfocus="this.value=''">
+                <input id="input-return-date" type="date" placeholder="Enter return date here..."
+                    onfocus="this.value=''">
+            </div>
+            <div>
+                <button id="process-button" type="submit" onclick="return Client.processForm(event)">GO!</button>
+            </div>
+        </form>
+    </section>
+</body>
+
+</html>
