@@ -1,5 +1,6 @@
 import { processForm } from './js/app'
 import { getGeonamesData, getWeatherBitData, getPixabayData } from './js/fetchAPIs'
+import { extractWeatherData, extractPixabayPhotoUrl } from './js/extract'
 
 // HTML 
 import './views/index.html'
@@ -13,6 +14,8 @@ export {
     processForm,
     getGeonamesData,
     getWeatherBitData,
-    getPixabayData
+    getPixabayData,
+    extractWeatherData,
+    extractPixabayPhotoUrl
 }
 

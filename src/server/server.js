@@ -49,6 +49,19 @@ app.listen(port, function () {
 // POST route for GEONAMES API
 app.post('/geo', getGeonamesAPI);
 
+// Helper function
+async function checkAPIResultAndSend(APIResult, functionName, res) {
+    try {
+        APIData = await APIResult.json();
+        console.log(APIData);
+        res.send(APIData);
+    }
+    catch (error) {
+        console.log(`ERROR: Could not get apiData in ${functionName}().  Msg: ` + error);
+        alert(`ERROR: Could not get API data in ${functionName}. Please try again later.`);
+    }
+}
+
 // /*
 // * Async function that does the external API call to geonames.org
 // * @param {Object} req - request (city name)
@@ -62,15 +75,7 @@ async function getGeonamesAPI(req, res) {
 
     const geonamesAPIResult = await fetch(url);
 
-    try {
-        geonamesAPIData = await geonamesAPIResult.json();
-        console.log(geonamesAPIData);
-        res.send(geonamesAPIData);
-    }
-    catch (error) {
-        console.log('ERROR: Could not get GEONAMES apiData in getGeonamesAPI().  Msg: ' + error);
-        alert('ERROR: Could not get GEONAMES API data. Please try again later.');
-    }
+    await checkAPIResultAndSend(geonamesAPIResult, getGeonamesAPI.name, res);
 }
 
 // POST route for WeatherBit API
@@ -96,15 +101,7 @@ async function getWeatherBitAPI(req, res) {
 
     const weatherbitAPIResult = await fetch(url);
 
-    try {
-        weatherbitAPIData = await weatherbitAPIResult.json();
-        console.log(weatherbitAPIData);
-        res.send(weatherbitAPIData);
-    }
-    catch (error) {
-        console.log('ERROR: Could not get WeatherBit apiData in getWeatherBitAPI().  Msg: ' + error);
-        alert('ERROR: Could not get WeatherBit API data. Please try again later.');
-    }
+    await checkAPIResultAndSend(weatherbitAPIResult, getWeatherBitAPI.name, res);
 }
 
 // POST route for Pixabay API
@@ -118,13 +115,5 @@ async function getPixabayAPI(req, res) {
 
     const pixabayAPIResult = await fetch(url);
 
-    try {
-        pixabayAPIData = await pixabayAPIResult.json();
-        console.log(pixabayAPIData);
-        res.send(pixabayAPIData);
-    }
-    catch (error) {
-        console.log('ERROR: Could not get Pixabay apiData in getPixabayAPI().  Msg: ' + error);
-        alert('ERROR: Could not get Pixabay API data. Please try again later.');
-    }
+    await checkAPIResultAndSend(pixabayAPIResult, getPixabayAPI.name, res);
 }
