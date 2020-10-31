@@ -39,7 +39,7 @@ app.get('/', function (req, res) {
 })
 
 // Port to use - webpack dev server will be using 8080, so this server should use 8081 for express/production
-const port = `8081`;
+const port = `8082`;
 
 // Designates what port the app will listen to for incoming requests
 app.listen(port, function () {
@@ -56,8 +56,7 @@ app.post('/geo', getGeonamesAPI);
 // */
 async function getGeonamesAPI(req, res) {
 
-    // TBD JSON object passed through req
-    const city = req.body.TBD;
+    const city = req.body.city;
 
     const url = `http://api.geonames.org/searchJSON?q=${city}&username=${GEONAMES_API_KEY}`;
 
@@ -77,14 +76,23 @@ async function getGeonamesAPI(req, res) {
 // POST route for WeatherBit API
 app.post('/weather', getWeatherBitAPI);
 
-
 async function getWeatherBitAPI(req, res) {
 
-    // TBD JSON object passed through req
-    const cityCoords = req.body.TBD;
+    const lat = req.body.lat;
+    const lon = req.body.lon;
+    const startDate = req.body.startDate;
+    const endDate = req.body.endDate;
 
-    // TBD
-    const url = `https://api.weatherbit.io/v2.0/history/daily?&lat=${cityCoords.lat}&lon=${cityCoords.lon}&key=${WEATHERBIT_API_KEY}`;
+    let url = ``;
+
+    // Fetch forecast data if trip is soon (within 7 days)
+    if (startDate === '' && endDate === '') {
+        url = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lon}&key=${WEATHERBIT_API_KEY}`;
+    }
+    // Otherwise fetch historical data
+    else {
+        url = `https://api.weatherbit.io/v2.0/history/daily?&lat=${lat}&lon=${lon}&start_date=${startDate}&end_date=${endDate}&key=${WEATHERBIT_API_KEY}`;
+    }
 
     const weatherbitAPIResult = await fetch(url);
 
@@ -100,14 +108,13 @@ async function getWeatherBitAPI(req, res) {
 }
 
 // POST route for Pixabay API
-app.post('/weather', getPixabayAPI);
+app.post('/pic', getPixabayAPI);
 
 async function getPixabayAPI(req, res) {
 
-    // TBD JSON object passed through req
-    const city = req.body.TBD;
+    const query = req.body.city;
 
-    const url = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${city}&image_type=photo`;
+    const url = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${query}&image_type=photo`;
 
     const pixabayAPIResult = await fetch(url);
 
