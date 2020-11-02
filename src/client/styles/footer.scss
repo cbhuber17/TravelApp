@@ -9,3 +9,12 @@ footer {
         font-size: 20px;
     }
 }
+
+$anchor_color: inherit;
+
+a {
+    & :visited, & :active {
+        color: $anchor_color;
+    }
+    color: $anchor_color;
+}

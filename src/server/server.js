@@ -95,6 +95,7 @@ async function getWeatherBitAPI(req, res) {
         url = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lon}&key=${WEATHERBIT_API_KEY}`;
     }
     // Otherwise fetch historical data
+    // Dates are of the format string: 'YYYY-MM-DD'
     else {
         url = `https://api.weatherbit.io/v2.0/history/daily?&lat=${lat}&lon=${lon}&start_date=${startDate}&end_date=${endDate}&key=${WEATHERBIT_API_KEY}`;
     }

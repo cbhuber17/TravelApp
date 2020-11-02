@@ -10,3 +10,77 @@ body {
     background: #3a3f44;
     border: 2px solid white;
 }
+
+$hover-shadow: 3px 3px 5px silver;
+
+.results-container {
+    display: grid;
+    gap: 20px;
+    grid-template-rows: 250px 500px;
+    grid-template-columns: 300px 500px;
+    justify-items: center;
+    justify-content: center;
+    border: 2px solid orange;
+
+    & h2 {
+        text-decoration: underline;
+        font-size: 24px;
+    }
+}
+
+.hide {
+    display: none;
+}
+
+#city-info {
+
+}
+
+#weather-info {
+    display: flex;
+    gap: 10px;
+}
+
+.weather-cell {
+    width: 80px;
+    font-size: 12px;
+
+    & img {
+        border: 2px solid white;
+        border-radius: 5px;
+        max-width: 100%;
+        height: auto;  
+    }
+}
+
+.weather-history {
+
+    // width: 200px;
+    font-size: 20px;
+
+    & img {
+        border: 2px solid white;
+        border-radius: 5px;
+        max-width: 100%;
+        height: auto;  
+    }
+}
+
+#countdown {
+
+}
+
+#pixabay-pic {
+
+    & img {
+        border: 2px solid white;
+        border-radius: 5px;
+        max-width: 100%;
+        height: auto;  
+    }
+
+    & :hover {
+        box-shadow: $hover-shadow;
+    }
+
+}

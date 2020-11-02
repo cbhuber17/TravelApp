@@ -1,10 +1,12 @@
 import { processForm } from './js/app'
 import { getGeonamesData, getWeatherBitData, getPixabayData } from './js/fetchAPIs'
 import { extractWeatherData, extractPixabayPhotoUrl } from './js/extract'
+import { getDateObjects, getCountdown, getTripDuration } from './js/dateOperations'
 
 // Styles via sass
 import './styles/main.scss'
 import './styles/header.scss'
+import './styles/form.scss'
 import './styles/body.scss'
 import './styles/footer.scss'
 
@@ -22,6 +24,9 @@ export {
     getWeatherBitData,
     getPixabayData,
     extractWeatherData,
-    extractPixabayPhotoUrl
+    extractPixabayPhotoUrl,
+    getDateObjects,
+    getCountdown,
+    getTripDuration
 }
 
