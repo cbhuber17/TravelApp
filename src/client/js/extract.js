@@ -49,7 +49,40 @@ export function extractWeatherData(apiData, startDate, endDate) {
     return dailyWeather;
 }
 
-export function extractPixabayPhotoUrl(apiData) {
+export function extractRestCountryData(apiData) {
+
+    let countryName = apiData.name;
+    let countryArea = apiData.area;
+    let countryPopulation = apiData.population;
+    let countryFlagUrl = apiData.flag;
+
+    return { countryName, countryArea, countryPopulation, countryFlagUrl };
+
+}
+
+export async function extractPicData(weatherData, countryData) {
+
+    // Extract pic of the city
+    let picData = await getPicData(weatherData[0].cityName);
+
+    // If unable to get a pic of the city, try getting a pic of the country
+    if (picData.picUrl == '') {
+        picData = await getPicData(countryData.countryName);
+    }
+
+    return picData;
+}
+
+async function getPicData(location) {
+
+    let picAPI = await Client.getPixabayData(location);
+    let picUrl = extractPixabayPhotoUrl(picAPI);
+    let picName = location;
+
+    return { picUrl, picName };
+}
+
+function extractPixabayPhotoUrl(apiData) {
 
     // Several photo options will be returned
     // Pick the best photo based on the views count

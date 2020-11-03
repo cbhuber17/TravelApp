@@ -39,6 +39,13 @@ export async function getWeatherBitData(lat, lon, startDate, endDate) {
     return await checkResponse(response, getWeatherBitData.name);
 }
 
+export async function getRestCountryData(countryCode) {
+
+    const response = await serverPOST('/country', { countryCode });
+
+    return await checkResponse(response, getRestCountryData.name);
+}
+
 export async function getPixabayData(city) {
 
     const response = await serverPOST('/pic', { city });

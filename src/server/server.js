@@ -105,6 +105,20 @@ async function getWeatherBitAPI(req, res) {
     await checkAPIResultAndSend(weatherbitAPIResult, getWeatherBitAPI.name, res);
 }
 
+// POST route for REST Countries API
+app.post('/country', getRESTCountryAPI);
+
+async function getRESTCountryAPI(req, res) {
+
+    const countryCode = req.body.countryCode;
+
+    const url = ` https://restcountries.eu/rest/v2/alpha/${countryCode}`;
+
+    const restCountryAPIResult = await fetch(url);
+
+    await checkAPIResultAndSend(restCountryAPIResult, getRESTCountryAPI.name, res);
+}
+
 // POST route for Pixabay API
 app.post('/pic', getPixabayAPI);
 

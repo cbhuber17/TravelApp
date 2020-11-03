@@ -1,7 +1,8 @@
 import { processForm } from './js/app'
-import { getGeonamesData, getWeatherBitData, getPixabayData } from './js/fetchAPIs'
-import { extractWeatherData, extractPixabayPhotoUrl } from './js/extract'
+import { getGeonamesData, getWeatherBitData, getRestCountryData, getPixabayData } from './js/fetchAPIs'
+import { extractWeatherData, extractRestCountryData, extractPicData } from './js/extract'
 import { getDateObjects, getCountdown, getTripDuration } from './js/dateOperations'
+import { updateCountdownUI, updateCityCountryUI, updateWeatherUI, updatePicUI } from './js/updateUI'
 
 // Styles via sass
 import './styles/main.scss'
@@ -22,11 +23,16 @@ export {
     processForm,
     getGeonamesData,
     getWeatherBitData,
+    getRestCountryData,
     getPixabayData,
     extractWeatherData,
-    extractPixabayPhotoUrl,
+    extractRestCountryData,
+    extractPicData,
     getDateObjects,
     getCountdown,
-    getTripDuration
+    getTripDuration,
+    updateCountdownUI,
+    updateCityCountryUI,
+    updateWeatherUI,
+    updatePicUI
 }
-
