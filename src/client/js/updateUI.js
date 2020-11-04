@@ -6,6 +6,7 @@ export function updateCountdownUI(departureDateString, returnDateString) {
     const tripDuration = Client.getTripDuration(departureDateString, returnDateString);
 
     document.getElementById('countdown').innerHTML = `<h2>Trip Information</h2>
+                                                      <img src="neonclock1.jpg" alt="Neon clock" width="250px" height="250px"><br>
                                                       <strong>Start date:</strong> ${departureDateString}<br>
                                                       <strong>End date:</strong> ${returnDateString}<br>
                                                       <strong>Number of days to the trip:</strong> ${countdownDaysToTrip} day(s).<br>
@@ -14,7 +15,7 @@ export function updateCountdownUI(departureDateString, returnDateString) {
 }
 
 export function updateCityCountryUI(weatherData, countryData) {
-    document.getElementById('city-info').innerHTML = `<h2>Weather Results:</h2><br>
+    document.getElementById('city-info').innerHTML = `<h2>Weather Results</h2>
                                                       <strong>City:</strong> ${weatherData[0].cityName}<br>
                                                       <strong>Belonging to country:</strong> ${countryData.countryName}<br>
                                                       <strong>Country Area:</strong> ${countryData.countryArea} sq km<br>
@@ -54,11 +55,12 @@ export function updateWeatherUI(weatherData, departureDateString, returnDateStri
     // Otherwise single forecast if historical
     else {
         innerHTMLWeather += `<div id="day0" class="weather-history">
-                             <h2>Typical weather for ${departureMonth}:</h2>
+                             <h2>Typical weather for ${weatherData[0].cityName} in ${departureMonth}</h2>
                              <strong>High:</strong> ${weatherData[0].highTemp} °C<br>
                              <strong>Low:</strong> ${weatherData[0].lowTemp} °C<br>
                              <strong>POP:</strong> ${weatherData[0].precipitation}%<br>
-                             <strong>Humidity:</strong> ${weatherData[0].humidity}%
+                             <strong>Humidity:</strong> ${weatherData[0].humidity}%<br>
+                             <img src="https://www.weatherbit.io/static/img/icons/a01d.png" alt="All Weather"></img>
                          </div>`;
     }
 

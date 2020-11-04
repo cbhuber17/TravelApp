@@ -18,8 +18,6 @@ export function extractWeatherData(apiData, startDate, endDate) {
     let dailyWeather = [];
     let numDaysForecast = apiData.data.length;
 
-    // TBD what to do if length 0
-
     // Forecast data will provide description and an icon
     if (startDate === '' && endDate === '') {
         for (let i = 0; i < numDaysForecast; i++) {
@@ -40,6 +38,7 @@ export function extractWeatherData(apiData, startDate, endDate) {
         lowTemp = apiData.data[0].min_temp;
         precipitation = apiData.data[0].precip;
         humidity = apiData.data[0].rh;
+
         // No icon or description available for historical data
         description = '';
         icon = '';

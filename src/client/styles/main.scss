@@ -14,16 +14,13 @@ body {
     border: $white-border;
 }
 
-
-
 .results-container {
     display: grid;
     gap: 20px;
-    grid-template-rows: 250px 500px;
+    grid-template-rows: 250px 450px;
     grid-template-columns: 300px 620px;
     justify-items: center;
     justify-content: center;
-    border: 2px solid orange;
 
     & h2 {
         text-decoration: underline;
@@ -39,7 +36,7 @@ body {
 
     & img {
         display: block;
-        margin: 0 auto;
+        margin: 10px auto;
         border: $white-border;
     }
 }
@@ -57,25 +54,25 @@ body {
         border: $white-border;
         border-radius: 5px;
         max-width: 100%;
-        height: auto;  
+        height: auto;
+    }
+
+    & p {
+        text-align: center;
     }
 }
 
 .weather-history {
-
-    // width: 200px;
     font-size: 20px;
-
-    & img {
-        border: $white-border;
-        border-radius: 5px;
-        max-width: 100%;
-        height: auto;  
-    }
+    text-align: center;
 }
 
 #countdown {
 
+    & img {
+        border: $white-border;
+        border-radius: 10px;
+    }
 }
 
 #pixabay-pic {
@@ -84,7 +81,7 @@ body {
         border: $white-border;
         border-radius: 5px;
         max-width: 100%;
-        height: auto;  
+        max-height: 420px;  
     }
 
     & :hover {

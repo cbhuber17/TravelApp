@@ -6,8 +6,6 @@ export function getDateObjects(departureDateString, returnDateString) {
     const returnDate = new Date(returnDateString);
     const now = new Date();
     now.setHours(0, 0, 0);
-    departureDate.setHours(0, 0, 0);
-    returnDate.setHours(0, 0, 0);
 
     return { now, departureDate, returnDate };
 

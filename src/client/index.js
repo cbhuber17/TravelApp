@@ -14,7 +14,7 @@ import './styles/footer.scss'
 // HTML 
 import './views/index.html'
 
-// Process the input data when clicked
+// Process the form data when the GO button is clicked
 const button = document.getElementById('process-button');
 button.addEventListener('click', processForm);
 

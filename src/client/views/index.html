@@ -18,8 +18,8 @@
         </h1>
     </header>
 
-    <section>
-        <form>
+    <section class="form-image">
+        <form class="form-container">
             <div class="city">
                 <p>Enter a city to travel to:</p>
                 <input id="input-city" type="text" placeholder="Enter city here..." onfocus="this.value=''">
@@ -39,46 +39,12 @@
         </form>
     </section>
 
-    <main>
+    <main id="results" class="hide">
         <section class="results-container">
-            <div id="city-info">
-                Hey
-            </div>
-            <div id="weather-info">
-                <div id="day0" class="weather-cell">
-                    Monday
-                </div>
-                <div id="day1" class="weather-cell">
-                    Tuesday
-                </div>
-                <div id="day2" class="weather-cell">
-                    Wednesday
-                </div>
-                <div id="day3" class="weather-cell">
-                    Thursday
-                </div>
-                <div id="day4" class="weather-cell">
-                    Friday
-                </div>
-                <div id="day5" class="weather-cell">
-                    Saturday
-                </div>
-                <div id="day6" class="weather-cell">
-                    Sunday
-                </div>
-            </div>
-            <div id="countdown">
-                Countdown
-            </div>
-            <div id="pixabay-pic">
-                Pic
-            </div>
-
-        </section>
-
-        <!-- TBD this may be challenging, can't use the div ID's from above -->
-        <section class="history-container">
-
+            <div id="city-info"></div>
+            <div id="weather-info"></div>
+            <div id="countdown"></div>
+            <div id="pixabay-pic"></div>
         </section>
     </main>
 

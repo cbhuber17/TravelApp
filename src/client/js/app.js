@@ -9,20 +9,15 @@ export async function processForm(event) {
     const returnDateString = document.getElementById('input-return-date').value;
 
     // Validate data
-    if (city === '') {
-        alert('Please enter a city.')
+    const isValidInput = validateInput(city, departureDateString, returnDateString);
+
+    // Exit form processing on invalid input
+    if (!isValidInput) {
         return;
     }
 
-    if (departureDateString === '') {
-        alert('Please enter a departure date.')
-        return;
-    }
-
-    if (returnDateString === '') {
-        alert('Please enter a return date.')
-        return;
-    }
+    // Update UI - show the results section
+    document.getElementById('results').classList.remove('hide');
 
     // Update UI - Countdown section
     Client.updateCountdownUI(departureDateString, returnDateString);
@@ -56,23 +51,39 @@ export async function processForm(event) {
     Client.updatePicUI(picData);
 
     // Required TODO:
-    // - Fix date math (num days to trip not correct)
-    // - Fix 7-day forecast start date
-    // - Hover states on each weather cell
-    // - Making countdown and city/country divs more visual
-    // - Making form area below header more visual (e.g. airport/airplane, form being opaque like second project) - parallax?
     // - Responsive changes
+}
 
+function validateInput(city, departureDateString, returnDateString) {
 
-    // Further bonus stuff:
+    if (city === '') {
+        alert('Please enter a city.')
+        return false;
+    }
 
-    // TBD Could this object be used to add more locations?
-    // Create an array on the local server, push/POST this there
-    const allData = { weatherData, countryData, picData };
+    if (departureDateString === '') {
+        alert('Please enter a departure date.')
+        return false;
+    }
 
-    // Hotel/fight info
-    // Packing list/notes
-    // Using LocalStorage
+    if (returnDateString === '') {
+        alert('Please enter a return date.')
+        return false;
+    }
+
+    const dateObjects = Client.getDateObjects(departureDateString, returnDateString);
+
+    if (dateObjects.returnDate < dateObjects.departureDate) {
+        alert('Please enter a return date that is after the departure date.')
+        return false;
+    }
+
+    if (dateObjects.now > dateObjects.departureDate) {
+        alert('Please enter a departure date that is after the current date.')
+        return false;
+    }
+
+    return true;
 }
 
 function getWeatherHistoryDates(departureDateString, returnDateString) {
