@@ -11,6 +11,9 @@ import './styles/form.scss'
 import './styles/body.scss'
 import './styles/footer.scss'
 
+// Images
+import './img/neonclock1.jpg'
+
 // HTML 
 import './views/index.html'
 

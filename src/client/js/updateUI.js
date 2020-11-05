@@ -21,7 +21,7 @@ export function updateCityCountryUI(weatherData, countryData) {
                                                       <strong>Country Area:</strong> ${countryData.countryArea} sq km<br>
                                                       <strong>Country Population:</strong> ${countryData.countryPopulation}<br>
                                                       <img src="${countryData.countryFlagUrl}" alt="${countryData.countryName} flag" 
-                                                      width="35%" height="25%">`;
+                                                      width="100px" height="50px">`;
 }
 
 export function updateWeatherUI(weatherData, departureDateString, returnDateString) {

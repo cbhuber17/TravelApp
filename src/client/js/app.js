@@ -49,12 +49,9 @@ export async function processForm(event) {
 
     // Update UI - Pic
     Client.updatePicUI(picData);
-
-    // Required TODO:
-    // - Responsive changes
 }
 
-function validateInput(city, departureDateString, returnDateString) {
+export function validateInput(city, departureDateString, returnDateString) {
 
     if (city === '') {
         alert('Please enter a city.')

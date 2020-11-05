@@ -19,11 +19,6 @@ export function getCountdown(departureDateString, returnDateString) {
 
     const dateObjects = getDateObjects(departureDateString, returnDateString);
 
-    if (dateObjects.departureDate > dateObjects.returnDate) {
-        alert('Please enter a departure date before the return date.')
-        return;
-    }
-
     return getDatesDelta(dateObjects.departureDate, dateObjects.now);
 }
 

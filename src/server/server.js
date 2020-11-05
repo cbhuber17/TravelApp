@@ -4,10 +4,10 @@
 const dotenv = require('dotenv');
 
 // Path for dev
-dotenv.config({ path: '../../.env' });
+// dotenv.config({ path: '../../.env' });
 
 // Path for prod
-// dotenv.config();
+dotenv.config();
 
 // API keys hidden in .env file
 const GEONAMES_API_KEY = process.env.GEONAMES_API_KEY;
