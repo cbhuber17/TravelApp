@@ -1,5 +1,8 @@
-// TBD document functions
-
+/*
+* Function that updates the countdown UI grid cell
+* @param {String} departureDateString - Departure date as YYYY-MM-DD
+* @param {String} returnDateString - Return date as YYYY-MM-DD
+*/
 export function updateCountdownUI(departureDateString, returnDateString) {
 
     const countdownDaysToTrip = Client.getCountdown(departureDateString, returnDateString);
@@ -14,6 +17,11 @@ export function updateCountdownUI(departureDateString, returnDateString) {
 
 }
 
+/*
+* Function that updates the city/country info UI grid cell
+* @param {Object} weatherData - Weather data extracted from the weatherbit.io API call
+* @param {Object} countryData - Country data extracted from the restcountries.eu API call
+*/
 export function updateCityCountryUI(weatherData, countryData) {
     document.getElementById('city-info').innerHTML = `<h2>Weather Results</h2>
                                                       <strong>City:</strong> ${weatherData[0].cityName}<br>
@@ -24,6 +32,12 @@ export function updateCityCountryUI(weatherData, countryData) {
                                                       width="100px" height="50px">`;
 }
 
+/*
+* Function that updates the weather information UI grid cell
+* @param {Object} weatherData - Weather data extracted from the weatherbit.io API call
+* @param {String} departureDateString - Departure date as YYYY-MM-DD
+* @param {String} returnDateString - Return date as YYYY-MM-DD
+*/
 export function updateWeatherUI(weatherData, departureDateString, returnDateString) {
 
     const countdownDaysToTrip = Client.getCountdown(departureDateString, returnDateString);
@@ -67,7 +81,10 @@ export function updateWeatherUI(weatherData, departureDateString, returnDateStri
     document.getElementById('weather-info').innerHTML = innerHTMLWeather;
 }
 
+/*
+* Function that updates the picture UI grid cell
+* @param {Object} picData - Picture URL/name extracted from the pixabay.com API call
+*/
 export function updatePicUI(picData) {
-
     document.getElementById('pixabay-pic').innerHTML = `<img src="${picData.picUrl}" alt="${picData.picName}">`;
 }

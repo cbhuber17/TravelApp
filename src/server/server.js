@@ -1,5 +1,3 @@
-// TBD document functions
-
 // Dotenv allows .env files to hide API keys
 const dotenv = require('dotenv');
 
@@ -13,8 +11,6 @@ dotenv.config();
 const GEONAMES_API_KEY = process.env.GEONAMES_API_KEY;
 const WEATHERBIT_API_KEY = process.env.WEATHERBIT_API_KEY;
 const PIXABAY_API_KEY = process.env.PIXABAY_API_KEY;
-
-const path = require('path');
 
 // Express server
 const express = require('express');
@@ -30,6 +26,9 @@ app.use(bodyParser.json());
 const cors = require('cors');
 app.use(cors());
 
+// Allow testing of server endpoints /w jest & supertest
+module.exports = app;
+
 // Apparently fetch is not defined in NodeJS; it must be installed via npm so the local server can use it
 const fetch = require('node-fetch');
 
@@ -38,7 +37,7 @@ app.get('/', function (req, res) {
     res.sendFile('dist/index.html');
 })
 
-// Port to use - webpack dev server will be using 8080, so this server should use 8081 for express/production
+// Port to use - webpack dev server will be using 8080, so this server should use 8082 for express/production
 const port = `8082`;
 
 // Designates what port the app will listen to for incoming requests
@@ -46,10 +45,12 @@ app.listen(port, function () {
     console.log(`Server has started on port number: ${port}!`);
 })
 
-// POST route for GEONAMES API
-app.post('/geo', getGeonamesAPI);
-
-// Helper function
+/*
+* Helper function that checks the API data for errors and sends it
+* @param {String} APIResult - request (city name)
+* @param {String} functionName - response (returns the API data as an object)
+* @param {Object} res - response (returns the API data as an object)
+*/
 async function checkAPIResultAndSend(APIResult, functionName, res) {
     try {
         APIData = await APIResult.json();
@@ -62,11 +63,14 @@ async function checkAPIResultAndSend(APIResult, functionName, res) {
     }
 }
 
-// /*
-// * Async function that does the external API call to geonames.org
-// * @param {Object} req - request (city name)
-// * @param {Object} res - response (returns the API data as an object)
-// */
+// POST route for GEONAMES API
+app.post('/geo', getGeonamesAPI);
+
+/*
+* Async function that does the external API call to geonames.org
+* @param {Object} req - request (city name)
+* @param {Object} res - response (returns the API data as an object)
+*/
 async function getGeonamesAPI(req, res) {
 
     const city = req.body.city;
@@ -81,6 +85,11 @@ async function getGeonamesAPI(req, res) {
 // POST route for WeatherBit API
 app.post('/weather', getWeatherBitAPI);
 
+/*
+* Async function that does the external API call to weatherbit.io
+* @param {Object} req - request (lat/lon/start date/end date)
+* @param {Object} res - response (returns the API data as an object)
+*/
 async function getWeatherBitAPI(req, res) {
 
     const lat = req.body.lat;
@@ -108,6 +117,11 @@ async function getWeatherBitAPI(req, res) {
 // POST route for REST Countries API
 app.post('/country', getRESTCountryAPI);
 
+/*
+* Async function that does the external API call to restcountries.eu
+* @param {Object} req - request (country code - 2 character string)
+* @param {Object} res - response (returns the API data as an object)
+*/
 async function getRESTCountryAPI(req, res) {
 
     const countryCode = req.body.countryCode;
@@ -122,6 +136,11 @@ async function getRESTCountryAPI(req, res) {
 // POST route for Pixabay API
 app.post('/pic', getPixabayAPI);
 
+/*
+* Async function that does the external API call to pixabay.com
+* @param {Object} req - request (city or country)
+* @param {Object} res - response (returns the API data as an object)
+*/
 async function getPixabayAPI(req, res) {
 
     const query = req.body.city;
@@ -132,3 +151,8 @@ async function getPixabayAPI(req, res) {
 
     await checkAPIResultAndSend(pixabayAPIResult, getPixabayAPI.name, res);
 }
+
+// Testing server GET endpoint (via jest)
+app.get('/test', async (req, res) => {
+    res.json({ message: 'Message received!' });
+})

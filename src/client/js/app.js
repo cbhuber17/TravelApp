@@ -1,3 +1,7 @@
+/*
+* Function that processes the form information received when hitting the GO button (city, departure date, return date)
+* @param {Object} event - Window event object
+*/
 export async function processForm(event) {
 
     // Prevent the page from reloading when clicking the button
@@ -24,7 +28,7 @@ export async function processForm(event) {
 
     // Get the weather history before making the weather API call
     // If within 1 week, this weatherHistory object will return empty strings for the API call (for a forecast call)
-    // Else, the weatherHistory object returns string start/end dates  (for a historical call)
+    // Else, the weatherHistory object returns string start/end dates (for a historical call)
     const weatherHistory = getWeatherHistoryDates(departureDateString, returnDateString);
 
     // Getting the weather API (via geonames API)
@@ -51,6 +55,13 @@ export async function processForm(event) {
     Client.updatePicUI(picData);
 }
 
+/*
+* Function that validates the string inputs - city, departure date and return date
+* @param {String} city - City for the API call
+* @param {String} departureDateString - Departure date as YYYY-MM-DD
+* @param {String} returnDateString - Return date as YYYY-MM-DD
+* @return {Boolean} - true if the inputs are valid, false otherwise
+*/
 export function validateInput(city, departureDateString, returnDateString) {
 
     if (city === '') {
@@ -83,6 +94,15 @@ export function validateInput(city, departureDateString, returnDateString) {
     return true;
 }
 
+/*
+* Function that gets the history dates for the weather API call
+* @param {String} departureDateString - Departure date as YYYY-MM-DD
+* @param {String} returnDateString - Return date as YYYY-MM-DD
+* @return {Object} - A history StartDateString that is departureDateString minus one year
+* and EndDateString that is departureDateString minus one year minus one day.
+* The basic weatherbit.io free API key allows history to be within 1 day
+* (so that is why end date is start date plus one day - extended days are not allowed.)
+*/
 function getWeatherHistoryDates(departureDateString, returnDateString) {
 
     // If these remain empty strings, then fetching/using forecast data rather than historical data

@@ -39,7 +39,7 @@ npm run build-prod
 The local server is run as follows:
 
 ```
-npm run start
+npm start
 ```
 
 The page is then opened in a browser at http://localhost:8082/

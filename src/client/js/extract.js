@@ -1,4 +1,12 @@
-// TBD document functions
+/*
+* Function extracts specific data from the weatherbit API call
+* @param {Object} apiData - weatherbit API data
+* @param {String} startDate - Start date for the historical weather (empty string if forecast being used)
+* @param {String} endDate - Start date for the historical weather (empty string if forecast being used)
+* @return {array of Objects} dailyWeather - Daily weather in an array that contains: date, cityName,
+*                                           countryCode, highTemp, lowTemp, precipitation, humidity,
+                                            description and icon URL.
+*/
 export function extractWeatherData(apiData, startDate, endDate) {
 
     let cityName = '';
@@ -48,6 +56,11 @@ export function extractWeatherData(apiData, startDate, endDate) {
     return dailyWeather;
 }
 
+/*
+* Function extracts specific data from the rest countries API call
+* @param {Object} apiData - REST countries API data
+* @return {Object} - countryName, countryArea, countryPopulation and countryFlagUrl
+*/
 export function extractRestCountryData(apiData) {
 
     let countryName = apiData.name;
@@ -59,6 +72,13 @@ export function extractRestCountryData(apiData) {
 
 }
 
+/*
+* Function extracts specific data from the pixabay API call.  It first attempts to 
+* grab data from a city.  If that is not successful, data from the country is returned.
+* @param {Object} weatherData - City from the weatherData extraction
+* @param {Object} countryData - Country from the countryData extraction
+* @return {Object} - picUrl and picName of the city or country
+*/
 export async function extractPicData(weatherData, countryData) {
 
     // Extract pic of the city
@@ -72,6 +92,11 @@ export async function extractPicData(weatherData, countryData) {
     return picData;
 }
 
+/*
+* Helper function extracts the specific data from the pixabay API call for a specific location.
+* @param {String} location - A city or country name
+* @return {Object} - picUrl and picName of the city or country
+*/
 async function getPicData(location) {
 
     let picAPI = await Client.getPixabayData(location);
@@ -81,6 +106,11 @@ async function getPicData(location) {
     return { picUrl, picName };
 }
 
+/*
+* Function extracts top photo from the pixabay API data (based on most views)
+* @param {Object} apiData - pixabay API data
+* @return {String} - topPhotoUrl - URL of the photo chosen
+*/
 function extractPixabayPhotoUrl(apiData) {
 
     // Several photo options will be returned
