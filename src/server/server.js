@@ -38,7 +38,7 @@ app.get('/', function (req, res) {
 })
 
 // Port to use - webpack dev server will be using 8080, so this server should use 8082 for express/production
-const port = `8082`;
+const port = process.env.PORT || `8082`;
 
 // Designates what port the app will listen to for incoming requests
 app.listen(port, function () {

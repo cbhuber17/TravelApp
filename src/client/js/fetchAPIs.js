@@ -5,7 +5,7 @@
 * @return {String} - The response from the server
 */
 async function serverPOST(url, data) {
-    const response = await fetch(`http://localhost:8082${url}`, {
+    const response = await fetch(`${url}`, {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-type': 'application/json' },

@@ -53,3 +53,7 @@ Simply provide the information as required in the form (text boxes):
 * Return date
 
 Then hit GO! and the APIs will do their calls and update the UI below with the updated result.  Errors in the date information will be displayed as an alert on the webpage window.
+
+## URL
+
+The web app is hosted on heroku here: https://travel-app-planner-cbhuber.herokuapp.com/
